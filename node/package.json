@@ -1,0 +1,71 @@
+{
+    "name": "webpack-obfuscator",
+    "description": "javascript-obfuscator plugin for Webpack",
+    "keywords": [
+        "obfuscator",
+        "obfuscation",
+        "uglify",
+        "crush",
+        "code protection",
+        "javascript obfuscator",
+        "js obfuscator",
+        "webpack obfuscator"
+    ],
+    "include": [
+        "app/**/*.ts",
+        "app/**/*.tsx",
+        "test/**/*.ts",
+        "test/**/*.tsx",
+        "node_modules/@types/**/*.d.ts",
+        "./types/**/*.d.ts"
+    ],
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "dependencies": {
+        "axios": "^0.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "fs": "0.0.1-security",
+        "javascript-obfuscator": "^0.18.4",
+        "multi-stage-sourcemap": "^0.2.1",
+        "multimatch": "^2.1.0",
+        "nodemon": "^1.19.1",
+        "webpack-sources": "^1.3.0"
+    },
+    "peerDependencies": {
+        "webpack": "^4.3.0"
+    },
+    "devDependencies": {
+        "@types/multimatch": "^2.1.3",
+        "@types/node": "8.0.47",
+        "@types/webpack": "^4.4.34",
+        "@types/webpack-sources": "^0.1.5",
+        "json-loader": "^0.5.7",
+        "source-map": "^0.6.1",
+        "typescript": "^3.7.2",
+        "webpack": "^4.3.0",
+        "webpack-cli": "^3.3.5"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/javascript-obfuscator/webpack-obfuscator.git"
+    },
+    "scripts": {
+        "setup": "npm install",
+        "build": "npx tsc",
+        "watch": "npx tsc -w",
+        "test": "npx webpack --config test/config/webpack.config.js",
+        "server": "nodemon test/input/src/api/server.js",
+        "server-test": "nodemon test/output/index.js",
+        "obfuscate": "node index.js",
+        "ts-compiler": "tsc --target ES6 index.ts",
+        "up": "node src/index.js && nodemon output/server.js",
+        "run-api": "nodemon server.js",
+        "build-app": "mkdir output && mkdir output/app && npx javascript-obfuscator test/input/src/api/server.js -o output/app/server.js && npx javascript-obfuscator test/input/src/api/routes.js -o output/app/routes.js && cp package.json output/app/ && cp package-lock.json output/app/",
+        "build-app-win": "npx javascript-obfuscator test/input/src/api/server.js -o output/app/server.js && npx javascript-obfuscator test/input/src/api/routes.js -o output/app/routes.js"
+    },
+    "author": {
+        "name": "Timofey Kachalov"
+    },
+    "license": "BSD-2-Clause"
+}
